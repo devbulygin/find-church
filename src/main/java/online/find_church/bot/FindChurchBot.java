@@ -1,4 +1,4 @@
-package online.find_church.bot.bot;
+package online.find_church.bot;
 
 import lombok.extern.slf4j.Slf4j;
 import online.find_church.bot.configuration.BotConfig;
@@ -8,16 +8,22 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Component
 public class FindChurchBot extends TelegramLongPollingBot {
 
-    @Autowired
-    private BotConfig botConfig;
-    public FindChurchBot(@Value("${bot.token}")String botToken) {
-        super(botToken);
+    private final BotConfig botConfig;
+
+    public FindChurchBot(BotConfig config) {
+        this.botConfig = config;
+        List<BotCommand> listOfCommands = new ArrayList<>();
+        listOfCommands.add(new BotCommand("/start", "Получить приветственное сообщение"));
     }
 
     @Override

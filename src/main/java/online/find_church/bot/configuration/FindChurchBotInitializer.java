@@ -1,7 +1,7 @@
 package online.find_church.bot.configuration;
 
 import lombok.extern.slf4j.Slf4j;
-import online.find_church.bot.bot.FindChurchBot;
+import online.find_church.bot.FindChurchBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
