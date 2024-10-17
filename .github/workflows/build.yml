@@ -20,6 +20,14 @@ jobs:
           gradle-version: 8.8
       - run: ./gradlew checkstyleMain
       - run: ./gradlew test
+      - name: JaCoCo Report
+        run: ./gradlew jacocoTestReport
+
+      - name: CodeClimate
+        run: |
+          bash <(curl -s https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64) upload --exit-code $?
+        env:
+          CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
 
   deploy:
     needs: build
