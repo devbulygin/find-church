@@ -13,10 +13,10 @@ jobs:
           java-version: 21
           distribution: 'temurin'
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v4
         with:
           arguments: build
-      - run: make build
+      - run: ./gradlew test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         env:
@@ -25,4 +25,3 @@ jobs:
         with:
           coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{ github.workspace }}build/customJacocoReportDir/test/jacocoTestReport.xml:jacoco
-          coverageInputType: jacoco
